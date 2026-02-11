@@ -1,30 +1,30 @@
-import { useRef } from "react";
-import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Contact() {
-  const form = useRef();
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-  const sendEmail = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    emailjs
-      .sendForm(
-        "YOUR_SERVICE_ID",
-        "YOUR_TEMPLATE_ID",
-        form.current,
-        "YOUR_PUBLIC_KEY"
-      )
-      .then(
-        () => {
-          alert("Message sent successfully!");
-          form.current.reset();
-        },
-        (error) => {
-          alert("Failed to send message");
-          console.log(error);
-        }
-      );
+    const formData = new FormData(e.target);
+    formData.append("access_key", import.meta.env.VITE_WEB3FORMS_KEY);
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const result = await response.json();
+
+    setLoading(false);
+
+    if (result.success) {
+      setSuccess(true);
+      e.target.reset();
+    }
   };
 
   return (
@@ -40,8 +40,7 @@ export default function Contact() {
       </motion.h2>
 
       <motion.form
-        ref={form}
-        onSubmit={sendEmail}
+        onSubmit={handleSubmit}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -49,14 +48,14 @@ export default function Contact() {
       >
 
         <input
-          name="user_name"
+          name="name"
           required
           placeholder="Your Name"
           className="w-full p-3 rounded bg-transparent border"
         />
 
         <input
-          name="user_email"
+          name="email"
           type="email"
           required
           placeholder="Email"
@@ -73,11 +72,18 @@ export default function Contact() {
 
         <motion.button
           whileHover={{ scale: 1.05 }}
+          disabled={loading}
           type="submit"
           className="w-full border py-3 rounded hover:bg-white hover:text-black"
         >
-          Send Enquiry
+          {loading ? "Sending..." : "Send Enquiry"}
         </motion.button>
+
+        {success && (
+          <p className="text-green-400 text-center">
+            Message sent successfully ✔
+          </p>
+        )}
 
       </motion.form>
     </section>
