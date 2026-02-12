@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
@@ -38,6 +40,9 @@ export default function Contact() {
       >
         Get In Touch
       </motion.h2>
+
+     
+
 
       <motion.form
         onSubmit={handleSubmit}
@@ -86,6 +91,31 @@ export default function Contact() {
         )}
 
       </motion.form>
+
+      <div className="flex justify-center gap-6 pt-6">
+
+  <motion.a
+    whileHover={{ scale: 1.2 }}
+    href="https://github.com/vijendrakumar5501"
+    target="_blank"
+    className="text-3xl hover:text-gray-300"
+  >
+    <FaGithub />
+  </motion.a>
+
+  <motion.a
+    whileHover={{ scale: 1.2 }}
+    href="https://www.linkedin.com/in/vijendrakumar5501/"
+    target="_blank"
+    className="text-3xl hover:text-blue-400"
+  >
+    <FaLinkedin />
+  </motion.a>
+
+</div>
+
+
+      
     </section>
   );
 }

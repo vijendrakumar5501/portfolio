@@ -61,12 +61,15 @@ export default function Hero() {
         transition={{ delay: 0.9 }}
         className="flex gap-4 mt-6"
       >
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          className="px-6 py-2 border rounded hover:bg-white hover:text-black"
-        >
-          Download CV
-        </motion.button>
+        <motion.a
+  whileHover={{ scale: 1.1 }}
+  href="/vijendra-cv.pdf"
+  download
+  className="px-6 py-2 border rounded hover:bg-white hover:text-black inline-block"
+>
+  Download CV
+</motion.a>
+
 
         <motion.button
           whileHover={{ scale: 1.1 }}
