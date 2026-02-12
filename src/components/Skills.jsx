@@ -28,9 +28,8 @@ const item = {
 
 export default function Skills() {
   return (
-    <section className="py-20 px-6">
+    <section  id="skills" className="py-20 px-6">
 
-      {/* Title */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +39,6 @@ export default function Skills() {
         Skills
       </motion.h2>
 
-      {/* Grid */}
       <motion.div
         variants={container}
         initial="hidden"
@@ -56,13 +54,11 @@ export default function Skills() {
             className="backdrop-blur bg-white/5 border border-white/10 rounded-xl p-5 hover:border-white transition"
           >
 
-            {/* Icon + Name */}
             <div className="flex items-center gap-3 text-xl">
               <span className="text-2xl">{skill.icon}</span>
               <p>{skill.name}</p>
             </div>
 
-            {/* Progress Bar */}
             <div className="mt-4 h-2 bg-gray-700 rounded overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}

@@ -3,7 +3,7 @@ import vk from "../assets/vk.jpg"
 
 export default function Hero() {
   return (
-    <section className="min-h-screen bg-blue-100 flex flex-col items-center justify-center text-center px-6">
+    <section id="home" className="min-h-screen bg-blue-100 flex flex-col items-center justify-center text-center px-6">
 
     
       <motion.div
