@@ -63,7 +63,7 @@ export default function Hero() {
       >
         <motion.a
   whileHover={{ scale: 1.1 }}
-  href="/vijendra-cv.pdf"
+  href="/vijendra-resume.pdf"
   download
   className="px-6 py-2 border rounded hover:bg-white hover:text-black inline-block"
 >
